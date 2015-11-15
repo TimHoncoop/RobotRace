@@ -2,6 +2,7 @@ package robotrace;
 
 import javax.media.opengl.GL;
 import static javax.media.opengl.GL2.*;
+import java.awt.Color;
 
 /**
  * Handles all of the RobotRace graphics functionality,
@@ -248,6 +249,51 @@ public class RobotRace extends Base {
      */
     public void drawAxisFrame() {
         // code goes here ...
+        
+        gl.glColor3f(256f, 256f, 0f);//yellow
+        glut.glutSolidSphere(1/8f, 10, 10); // draw sphere, radius 1/8f, longitude and latitude are 10 respectively
+        
+        // draw x axis
+        gl.glColor3f(256f, 0f, 0f); //red
+        gl.glTranslatef(0.5f, 0, 0);//moves in x-direction
+        gl.glScalef(1f, 0.1f, 0.1f);//scales in vertical direction
+        glut.glutSolidCube(1f); //render a solid cube
+        gl.glScalef(1f, 10f, 10f);//fill in the cube
+
+        // draw the cone of x axis
+        gl.glTranslatef(0.5f, 0, 0);//blah
+        gl.glRotatef(90, 0, 1, 0); //90 degree rotation
+        glut.glutSolidCone(0.15, 0.2, 20, 20); //render a solid cone
+        gl.glRotatef(90, 0, -1f, 0);//(0,-1,0)
+        gl.glTranslatef(-1f, 0, 0);//(-1,0,0)
+        
+         // draw y axis
+        gl.glColor3f(0f, 256f, 0f); //green
+        gl.glTranslatef(0, 0.5f, 0);//moves in y-direction
+        gl.glScalef(0.1f, 1f, 0.1f);//scales in vertical direction
+        glut.glutSolidCube(1f); //render a solid cube
+        gl.glScalef(10f, 1f, 10f);//fill in the cube
+
+        // draw the cone of y axis
+        gl.glTranslatef(0, 0.5f, 0);//blah
+        gl.glRotatef(90, -1, 0, 0); //90 degree rotation opposite to the normal
+        glut.glutSolidCone(0.15, 0.2, 20, 20); //render a solid cone
+        gl.glRotatef(90, 1f, 0, 0);//(1,0,0)
+        gl.glTranslatef(0, -1f, 0);//(0,-1,0)
+        
+         // draw z axis
+        gl.glColor3f(0f, 0f, 256f); //blue
+        gl.glTranslatef(0, 0, 0.5f);//moves in y-direction
+        gl.glScalef(0.1f, 0.1f, 1f);//scales in vertical direction
+        glut.glutSolidCube(1f); //render a solid cube
+        gl.glScalef(10f, 10f, 1f);//fill in the cube
+
+        // draw the cone of z axis
+        gl.glTranslatef(0, 0, 0.5f);//blah
+        gl.glRotatef(90, 0, 0, 1); //90 degree rotation alongside normal
+        glut.glutSolidCone(0.15, 0.2, 20, 20); //render a solid cone
+        gl.glRotatef(90, 0, 0, -1f); //(0,0,-1)
+        gl.glTranslatef(0, 0, -1f); //(0,0,-1)
     }
  
     /**
@@ -258,4 +304,8 @@ public class RobotRace extends Base {
         RobotRace robotRace = new RobotRace();
         robotRace.run();
     } 
+
+    private void setColor() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
