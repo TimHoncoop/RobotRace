@@ -1,8 +1,24 @@
 package robotrace;
 
-import javax.media.opengl.GL;
-import static javax.media.opengl.GL2.*;
 import java.awt.Color;
+import static java.lang.Math.*;
+import javax.media.opengl.GL;
+import static javax.media.opengl.GL.GL_BLEND;
+import static javax.media.opengl.GL.GL_COLOR_BUFFER_BIT;
+import static javax.media.opengl.GL.GL_DEPTH_BUFFER_BIT;
+import static javax.media.opengl.GL.GL_DEPTH_TEST;
+import static javax.media.opengl.GL.GL_FRONT_AND_BACK;
+import static javax.media.opengl.GL.GL_LESS;
+import static javax.media.opengl.GL.GL_NICEST;
+import static javax.media.opengl.GL.GL_ONE_MINUS_SRC_ALPHA;
+import static javax.media.opengl.GL.GL_SRC_ALPHA;
+import static javax.media.opengl.GL.GL_TEXTURE_2D;
+import static javax.media.opengl.GL2.*;
+import static javax.media.opengl.GL2ES1.GL_PERSPECTIVE_CORRECTION_HINT;
+import static javax.media.opengl.GL2GL3.GL_FILL;
+import static javax.media.opengl.fixedfunc.GLLightingFunc.GL_NORMALIZE;
+import static javax.media.opengl.fixedfunc.GLMatrixFunc.GL_MODELVIEW;
+import static javax.media.opengl.fixedfunc.GLMatrixFunc.GL_PROJECTION;
 
 /**
  * Handles all of the RobotRace graphics functionality,
@@ -176,7 +192,7 @@ public class RobotRace extends Base {
 
         // Set the perspective.
         // Modify this to meet the requirements in the assignment.
-        glu.gluPerspective(40, (float)gs.w / (float)gs.h, 0.1, 100);
+        glu.gluPerspective(40, (float)gs.w / (float)gs.h, 0.1*gs.vDist, 10*gs.vDist);
         
         // Set camera.
         gl.glMatrixMode(GL_MODELVIEW);
@@ -185,9 +201,9 @@ public class RobotRace extends Base {
         // Update the view according to the camera mode and robot of interest.
         // For camera modes 1 to 4, determine which robot to focus on.
         camera.update(gs, robots[0]);
-        glu.gluLookAt(camera.eye.x(),    camera.eye.y(),    camera.eye.z(),
-                      camera.center.x(), camera.center.y(), camera.center.z(),
-                      camera.up.x(),     camera.up.y(),     camera.up.z());
+        glu.gluLookAt((gs.vDist*cos(gs.phi)*cos(gs.theta)),    (gs.vDist*cos(gs.phi)*sin(gs.theta)),    (gs.vDist*sin(gs.phi)),
+                      gs.cnt.x, gs.cnt.y, gs.cnt.z,
+                      0,     0,     1);
     }
     
     /**
@@ -195,7 +211,9 @@ public class RobotRace extends Base {
      */
     @Override
     public void drawScene() {
-        // Background color.
+           
+
+// Background color.
         gl.glClearColor(1f, 1f, 1f, 0f);
         
         // Clear background.
@@ -213,7 +231,7 @@ public class RobotRace extends Base {
         if (gs.showAxes) {
             drawAxisFrame();
         }
-        
+        gl.glColor3f(0f, 0f, 0f);
         // Get the position and direction of the first robot.
         robots[0].position = raceTracks[gs.trackNr].getLanePoint(0, 0);
         robots[0].direction = raceTracks[gs.trackNr].getLaneTangent(0, 0);

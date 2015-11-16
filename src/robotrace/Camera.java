@@ -1,5 +1,8 @@
 package robotrace;
 
+import javax.media.opengl.GL;
+import static javax.media.opengl.GL2.*;
+import java.awt.Color;
 /**
  * Implementation of a camera with a position and orientation. 
  */
@@ -13,6 +16,8 @@ class Camera {
 
     /** The up vector. */
     public Vector up = Vector.Z;
+    
+    
 
     /**
      * Updates the camera viewpoint and direction based on the
@@ -52,7 +57,8 @@ class Camera {
      * Computes eye, center, and up, based on the camera's default mode.
      */
     private void setDefaultMode(GlobalState gs) {
-        // code goes here ...
+        
+        
     }
 
     /**
