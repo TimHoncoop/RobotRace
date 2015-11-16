@@ -57,7 +57,9 @@ class Camera {
      * Computes eye, center, and up, based on the camera's default mode.
      */
     private void setDefaultMode(GlobalState gs) {
-        
+        gs.vDist = 15;
+        gs.phi = 40;
+        gs.theta = 40;
         
     }
 
@@ -66,7 +68,9 @@ class Camera {
      * The camera should focus on the robot.
      */
     private void setHelicopterMode(GlobalState gs, Robot focus) {
-        // code goes here ...
+        gs.vDist = 15;
+        gs.phi = 40;
+        gs.theta = 70;
     }
 
     /**
@@ -74,7 +78,9 @@ class Camera {
      * The camera should focus on the robot.
      */
     private void setMotorCycleMode(GlobalState gs, Robot focus) {
-        // code goes here ...
+        gs.vDist = 15;
+        gs.phi = 40;
+        gs.theta = 120;
     }
 
     /**

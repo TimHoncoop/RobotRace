@@ -192,7 +192,7 @@ public class RobotRace extends Base {
 
         // Set the perspective.
         // Modify this to meet the requirements in the assignment.
-        glu.gluPerspective(40, (float)gs.w / (float)gs.h, 0.1*gs.vDist, 10*gs.vDist);
+        glu.gluPerspective(2*atan((0.5*gs.vWidth)/gs.vDist), (float)gs.w / (float)gs.h, 0.1*gs.vDist, 10*gs.vWidth);
         
         // Set camera.
         gl.glMatrixMode(GL_MODELVIEW);
