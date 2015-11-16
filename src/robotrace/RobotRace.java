@@ -192,8 +192,10 @@ public class RobotRace extends Base {
 
         // Set the perspective.
         // Modify this to meet the requirements in the assignment.
-        glu.gluPerspective(2*atan((0.5*gs.vWidth)/gs.vDist), (float)gs.w / (float)gs.h, 0.1*gs.vDist, 10*gs.vWidth);
-        
+        glu.gluPerspective(Math.toDegrees((2*atan((0.5*gs.vWidth)/gs.vDist))), (float)gs.w / (float)gs.h, 0.1*gs.vDist, 10*gs.vDist);
+        System.out.println((2*atan((0.5*gs.vWidth)/gs.vDist)));
+        System.out.println("dist:" + gs.vDist);
+        System.out.println("width:" + gs.vWidth);
         // Set camera.
         gl.glMatrixMode(GL_MODELVIEW);
         gl.glLoadIdentity();
@@ -291,6 +293,8 @@ public class RobotRace extends Base {
         gl.glScalef(0.1f, 1f, 0.1f);//scales in vertical direction
         glut.glutSolidCube(1f); //render a solid cube
         gl.glScalef(10f, 1f, 10f);//fill in the cube
+        
+       
 
         // draw the cone of y axis
         gl.glTranslatef(0, 0.5f, 0);//blah
