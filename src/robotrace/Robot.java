@@ -32,6 +32,144 @@ class Robot {
      * Draws this robot (as a {@code stickfigure} if specified).
      */
     public void draw(GL2 gl, GLU glu, GLUT glut, boolean stickFigure, float tAnim) {
-        // code goes here ...
+        if (stickFigure) {
+            
+        }
+        else {
+
+        }
+        
+        //MIDDLE
+        //Caudale
+        gl.glPushMatrix();
+        gl.glTranslatef(0, 0, 0.75f);
+        glut.glutSolidSphere(1/10f, 10, 10);
+        gl.glPopMatrix();
+        
+        //connection legs
+        gl.glPushMatrix();
+        gl.glTranslatef(0, 0, 0.75f);
+        gl.glScalef(0.5f, 0.1f, 0.1f);
+        glut.glutSolidCube(1f);
+        gl.glPopMatrix();
+        
+        //spine
+        gl.glPushMatrix();
+        gl.glTranslatef(0, 0, 1.125f);
+        gl.glScalef(0.1f, 0.1f, 0.75f);
+        glut.glutSolidCube(1f);
+        gl.glPopMatrix();
+
+        //Cervical vertebrea
+        gl.glPushMatrix();
+        gl.glTranslatef(0, 0, 1.5f);
+        glut.glutSolidSphere(1/10f, 10, 10);
+        gl.glPopMatrix();
+        
+        //wings
+        gl.glPushMatrix();
+        gl.glTranslatef(0, 0, 1.5f);
+        gl.glScalef(1.0f, 0.1f, 0.1f);
+        glut.glutSolidCube(1f);
+        gl.glPopMatrix();
+        
+        //neck
+        gl.glPushMatrix();
+        gl.glTranslatef(0, 0, 1.65f);
+        gl.glScalef(0.1f, 0.1f, 0.3f);
+        glut.glutSolidCube(1f);
+        gl.glPopMatrix();
+        
+        //head
+        gl.glPushMatrix();
+        gl.glTranslatef(0, 0, 1.9f);
+        glut.glutSolidSphere(1/5f, 10, 10);
+        gl.glPopMatrix();
+        
+        
+        
+        //LEFT SIDE
+        //left feet
+        gl.glPushMatrix();
+        gl.glTranslatef(-0.25f, 0, 0);
+        glut.glutSolidSphere(1/10f, 10, 10);
+        gl.glPopMatrix();
+        
+        //left leg
+        gl.glPushMatrix();
+        gl.glTranslatef(-0.25f, 0, 0.375f);
+        gl.glScalef(0.1f, 0.1f, 0.75f);
+        glut.glutSolidCube(1f);
+        gl.glPopMatrix();
+        
+        //left hip
+        gl.glPushMatrix();
+        gl.glTranslatef(0.25f, 0, 0.75f);
+        glut.glutSolidSphere(1/10f, 10, 10);
+        gl.glPopMatrix();
+        
+        //left shoulder
+        gl.glPushMatrix();
+        gl.glTranslatef(-0.5f, 0, 1.5f);
+        glut.glutSolidSphere(1/10f, 10, 10);
+        gl.glPopMatrix();
+        
+        //left arm
+        gl.glPushMatrix();
+        gl.glTranslatef(-0.5f, 0, 1.1f);
+        gl.glScalef(0.1f, 0.1f, 0.8f);
+        glut.glutSolidCube(1f);
+        gl.glPopMatrix();
+        
+        //left hand
+        gl.glPushMatrix();
+        gl.glTranslatef(-0.5f, 0, 0.7f);
+        glut.glutSolidSphere(1/10f, 10, 10);
+        gl.glPopMatrix();
+
+
+
+        //RIGHT SIDE
+        //Right feet
+        gl.glPushMatrix();
+        gl.glTranslatef(0.25f, 0, 0);
+        glut.glutSolidSphere(1/10f, 10, 10);
+        gl.glPopMatrix();
+        
+        //right leg
+        gl.glPushMatrix();
+        gl.glTranslatef(0.25f, 0, 0.375f);
+        gl.glScalef(0.1f, 0.1f, 0.75f);
+        glut.glutSolidCube(1f);
+        gl.glPopMatrix();
+        
+        //right hip
+        gl.glPushMatrix();
+        gl.glTranslatef(-0.25f, 0, 0.75f);
+        glut.glutSolidSphere(1/10f, 10, 10);
+        gl.glPopMatrix();
+        
+        //right shoulder
+        gl.glPushMatrix();
+        gl.glTranslatef(0.5f, 0, 1.5f);
+        glut.glutSolidSphere(1/10f, 10, 10);
+        gl.glPopMatrix();
+        
+        //right arm
+        gl.glPushMatrix();
+        gl.glTranslatef(0.5f, 0, 1.1f);
+        gl.glScalef(0.1f, 0.1f, 0.8f);
+        glut.glutSolidCube(1f);
+        gl.glPopMatrix();
+        
+        //Right hand
+        gl.glPushMatrix();
+        gl.glTranslatef(0.5f, 0, 0.7f);
+        glut.glutSolidSphere(1/10f, 10, 10);
+        gl.glPopMatrix();
+        
+        
+        
+        
     }
 }

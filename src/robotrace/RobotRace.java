@@ -239,8 +239,10 @@ public class RobotRace extends Base {
         robots[0].direction = raceTracks[gs.trackNr].getLaneTangent(0, 0);
         
         // Draw the first robot.
+        if (gs.showStick) {
+        robots[0].draw(gl, glu, glut, true, gs.tAnim);
+        }
         robots[0].draw(gl, glu, glut, false, gs.tAnim);
-        
         // Draw the race track.
         raceTracks[gs.trackNr].draw(gl, glu, glut);
         
@@ -248,19 +250,7 @@ public class RobotRace extends Base {
         terrain.draw(gl, glu, glut);
         
         // Unit box around origin.
-        glut.glutWireCube(1f);
-
-        // Move in x-direction.
-        gl.glTranslatef(2f, 0f, 0f);
         
-        // Rotate 30 degrees, around z-axis.
-        gl.glRotatef(30f, 0f, 0f, 1f);
-        
-        // Scale in z-direction.
-        gl.glScalef(1f, 1f, 2f);
-
-        // Translated, rotated, scaled box.
-        glut.glutWireCube(1f);
     }
     
     /**
@@ -316,6 +306,8 @@ public class RobotRace extends Base {
         glut.glutSolidCone(0.15, 0.2, 20, 20); //render a solid cone
         gl.glRotatef(90, 0, 0, -1f); //(0,0,-1)
         gl.glTranslatef(0, 0, -1f); //(0,0,-1)
+        
+        
     }
  
     /**
