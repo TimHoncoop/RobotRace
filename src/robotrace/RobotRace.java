@@ -238,11 +238,66 @@ public class RobotRace extends Base {
         robots[0].position = raceTracks[gs.trackNr].getLanePoint(0, 0);
         robots[0].direction = raceTracks[gs.trackNr].getLaneTangent(0, 0);
         
+        
         // Draw the first robot.
         if (gs.showStick) {
-        robots[0].draw(gl, glu, glut, true, gs.tAnim);
+            //robot 0
+            robots[0].position = new Vector(-2,-1,0);
+            gl.glPushMatrix();
+            gl.glTranslated(robots[0].position.x, robots[0].position.y, robots[0].position.z);
+            robots[0].draw(gl, glu, glut, true, gs.tAnim);
+            gl.glPopMatrix();
+            
+            //robot 1
+            robots[1].position = new Vector(0,-1,0);
+            gl.glPushMatrix();
+            gl.glTranslated(robots[1].position.x, robots[1].position.y, robots[1].position.z);
+            robots[1].draw(gl, glu, glut, true, gs.tAnim);
+            gl.glPopMatrix();
+            
+            //robot 2
+            robots[2].position = new Vector(2,-1,0);
+            gl.glPushMatrix();
+            gl.glTranslated(robots[2].position.x, robots[2].position.y, robots[2].position.z);
+            robots[2].draw(gl, glu, glut, true, gs.tAnim);
+            gl.glPopMatrix();
+            
+            //robot 3
+            robots[3].position = new Vector(4,-1,0);
+            gl.glPushMatrix();
+            gl.glTranslated(robots[3].position.x, robots[3].position.y, robots[3].position.z);
+            robots[3].draw(gl, glu, glut, true, gs.tAnim);
+            gl.glPopMatrix();
+        } else {
+            //robot 0
+            robots[0].position = new Vector(-2,-1,0);
+            gl.glPushMatrix();
+            gl.glTranslated(robots[0].position.x, robots[0].position.y, robots[0].position.z);
+            robots[0].draw(gl, glu, glut, false, gs.tAnim);
+            gl.glPopMatrix();
+            
+            //robot 1
+            robots[1].position = new Vector(0,-1,0);
+            gl.glPushMatrix();
+            gl.glTranslated(robots[1].position.x, robots[1].position.y, robots[1].position.z);
+            robots[1].draw(gl, glu, glut, false, gs.tAnim);
+            gl.glPopMatrix();
+            
+            //robot 2
+            robots[2].position = new Vector(2,-1,0);
+            gl.glPushMatrix();
+            gl.glTranslated(robots[2].position.x, robots[2].position.y, robots[2].position.z);
+            robots[2].draw(gl, glu, glut, false, gs.tAnim);
+            gl.glPopMatrix();
+            
+            //robot 3
+            robots[3].position = new Vector(4,-1,0);
+            gl.glPushMatrix();
+            gl.glTranslated(robots[3].position.x, robots[3].position.y, robots[3].position.z);
+            robots[3].draw(gl, glu, glut, false, gs.tAnim);
+            gl.glPopMatrix();
         }
-        robots[0].draw(gl, glu, glut, false, gs.tAnim);
+       
         // Draw the race track.
         raceTracks[gs.trackNr].draw(gl, glu, glut);
         
