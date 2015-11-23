@@ -311,14 +311,41 @@ public class RobotRace extends Base {
         
         // Unit box around origin.
         
-        FloatBuffer ambient = ByteBuffer.allocateDirect(16).asFloatBuffer();
-        ambient.mark();
-        ambient.put(new float[] { 0.5f, 0.5f, 0.5f, 1f });
-        ambient.reset();
+        float lightPos[] = {2.0f, 0.0f, 3.0f, 0.0f};
+        float sunlightPos[] = {2.0f, 0.0f, 3.0f, 0.0f};
 
-        gl.glEnable(GL_LIGHTING);
-        gl.glEnable(GL_LIGHT0);
-        gl.glLightfv(GL_LIGHT0, GL_AMBIENT, ambient);
+        
+        gl.glShadeModel(GL_SMOOTH); // Use smooth shading
+        gl.glEnable(GL_LIGHTING); // Enable lighting
+        gl.glEnable(GL_LIGHT0); // Enable light source #0
+        gl.glEnable(GL_LIGHT1);
+        
+
+        // position LS 0
+        gl.glLightfv(GL_LIGHT0, GL_POSITION, lightPos, 0);
+        gl.glLightfv(GL_LIGHT1, GL_POSITION, sunlightPos, 0); 
+
+        
+        float greyColor[]  = {0.3f, 0.3f, 0.3f, 1.0f};
+        float pinkColor[]  = {1.0f, 0.7f, 0.7f, 1.0f};
+        float whiteColor[] = {1.0f, 1.0f, 1.0f, 1.0f};
+
+        gl.glLightfv(GL_LIGHT0, GL_AMBIENT,  greyColor, 0); 
+        gl.glLightfv(GL_LIGHT0, GL_DIFFUSE,  pinkColor, 0);
+        gl.glLightfv(GL_LIGHT0, GL_SPECULAR, whiteColor, 0);
+        
+        gl.glMaterialfv(GL_FRONT, GL_DIFFUSE, pinkColor, 0); 
+        
+        float emissionColor[]  = {0.2f, 0.3f, 0.1f, 1.0f};
+        float diffuseColor[]   = {0.6f, 0.3f, 0.1f, 1.0f};
+        float specularColor[]  = {0.1f, 0.1f, 0.1f, 1.0f};
+
+        gl.glMaterialfv(GL_FRONT, GL_EMISSION, emissionColor, 0);
+        gl.glMaterialfv(GL_FRONT, GL_DIFFUSE,  diffuseColor, 0);
+        gl.glMaterialfv(GL_FRONT, GL_SPECULAR, specularColor, 0);
+        gl.glMaterialf(GL_FRONT, GL_SHININESS, 25.0f);
+
+
     }
     
     /**

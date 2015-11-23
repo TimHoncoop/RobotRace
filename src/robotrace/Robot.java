@@ -166,7 +166,7 @@ class Robot {
             //torso
             gl.glPushMatrix();
             gl.glTranslatef(0, 0, 1.125f);
-            gl.glScalef(0.5f, 0.3f, 0.8f);
+            gl.glScalef(0.5f, 0.3f, 1.0f);
             glut.glutSolidCube(1f);
             gl.glPopMatrix();
             
