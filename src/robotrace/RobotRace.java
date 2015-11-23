@@ -2,6 +2,8 @@ package robotrace;
 
 import java.awt.Color;
 import static java.lang.Math.*;
+import java.nio.ByteBuffer;
+import java.nio.FloatBuffer;
 import javax.media.opengl.GL;
 import static javax.media.opengl.GL.GL_BLEND;
 import static javax.media.opengl.GL.GL_COLOR_BUFFER_BIT;
@@ -16,6 +18,9 @@ import static javax.media.opengl.GL.GL_TEXTURE_2D;
 import static javax.media.opengl.GL2.*;
 import static javax.media.opengl.GL2ES1.GL_PERSPECTIVE_CORRECTION_HINT;
 import static javax.media.opengl.GL2GL3.GL_FILL;
+import static javax.media.opengl.fixedfunc.GLLightingFunc.GL_AMBIENT;
+import static javax.media.opengl.fixedfunc.GLLightingFunc.GL_LIGHT0;
+import static javax.media.opengl.fixedfunc.GLLightingFunc.GL_LIGHTING;
 import static javax.media.opengl.fixedfunc.GLLightingFunc.GL_NORMALIZE;
 import static javax.media.opengl.fixedfunc.GLMatrixFunc.GL_MODELVIEW;
 import static javax.media.opengl.fixedfunc.GLMatrixFunc.GL_PROJECTION;
@@ -306,6 +311,14 @@ public class RobotRace extends Base {
         
         // Unit box around origin.
         
+        FloatBuffer ambient = ByteBuffer.allocateDirect(16).asFloatBuffer();
+        ambient.mark();
+        ambient.put(new float[] { 0.5f, 0.5f, 0.5f, 1f });
+        ambient.reset();
+
+        gl.glEnable(GL_LIGHTING);
+        gl.glEnable(GL_LIGHT0);
+        gl.glLightfv(GL_LIGHT0, GL_AMBIENT, ambient);
     }
     
     /**
