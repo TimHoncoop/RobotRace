@@ -1,7 +1,10 @@
 package robotrace;
 
 import com.jogamp.opengl.util.gl2.GLUT;
+import static javax.media.opengl.GL.GL_FRONT_AND_BACK;
 import javax.media.opengl.GL2;
+import static javax.media.opengl.fixedfunc.GLLightingFunc.GL_SHININESS;
+import static javax.media.opengl.fixedfunc.GLLightingFunc.GL_SPECULAR;
 import javax.media.opengl.glu.GLU;
 
 /**
@@ -166,6 +169,8 @@ class Robot {
         else {
             
             gl.glColor3f(material.diffuse[0], material.diffuse[1],material.diffuse[2]);
+            gl.glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, material.specular, 0);
+            gl.glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, material.shininess); //The shininess parameter
             //torso
             gl.glPushMatrix();
             gl.glTranslatef(0, 0, 1.125f);

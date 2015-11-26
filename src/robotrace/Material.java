@@ -29,7 +29,7 @@ public enum Material {
     WOOD ( //After trying we found the 'bronze' color is closed to the color of wood
         new float[]{0.714f, 0.4284f, 0.18144f, 1.0f},
         new float[]{0.393548f, 0.271906f, 0.166721f, 1.0f},
-        0.2f * 128),
+        0.0f * 128),
 
     /**
      * Orange material properties.
@@ -37,7 +37,7 @@ public enum Material {
      */
     ORANGE(new float[]{0.5f, 0.25f, 0f, 1.0f},
            new float[]{0.65f, 0.6f, 0.55f, 1.0f},
-           0.25f * 128);
+           0.1f * 128);
 
 
     /** The diffuse RGBA reflectance of the material. */

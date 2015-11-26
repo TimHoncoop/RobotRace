@@ -229,6 +229,23 @@ public class RobotRace extends Base {
         glu.gluLookAt((gs.vDist*cos(gs.phi)*cos(gs.theta)),    (gs.vDist*cos(gs.phi)*sin(gs.theta)),    (gs.vDist*sin(gs.phi)),
                       gs.cnt.x, gs.cnt.y, gs.cnt.z,
                       0,     0,     1);
+        
+                
+        gl.glEnable(GL_LIGHTING); // Enable lighting
+        gl.glEnable(GL_LIGHT0); // Enable light source #0  
+        
+        float x = (float)(gs.vDist*cos(gs.phi+0.1745329252 )*cos(gs.theta-0.1745329252 ));
+        float y = (float)(gs.vDist*cos(gs.phi+0.1745329252 )*sin(gs.theta-0.1745329252 ));
+        float z = (float)(gs.vDist*sin(gs.phi+0.1745329252 ));
+        float lightPos[] = {x, y, z, 0.0f};
+        float whiteColor[] = {1.0f, 1.0f, 1.0f, 1.0f};
+        float globalAmbient[] = {0.5f, 0.5f, 0.5f, 1.0f};
+        
+        // position LS 0
+        gl.glLightfv(GL_LIGHT0, GL_POSITION, lightPos, 0);
+        gl.glLightfv(GL_LIGHT0, GL_DIFFUSE, whiteColor, 0);
+        gl.glLightfv(GL_LIGHT0, GL_AMBIENT, globalAmbient, 0);
+        gl.glLightfv(GL_LIGHT0, GL_SPECULAR, whiteColor, 0);
     }
     
     /**
@@ -336,26 +353,7 @@ public class RobotRace extends Base {
         // Draw the terrain.
         terrain.draw(gl, glu, glut);
         
-        // Unit box around origin.
-        
-        float lightPos[] = {-5.0f, 5.0f, 0.0f, 1.0f};
-        float whiteColor[] = {1.0f, 1.0f, 1.0f, 1.0f};
-        
-        //float ambientColor[] = {0.2f, 0.2f, 0.2f, 1f};
-        //gl.glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientColor,0);
-        
-        gl.glEnable(GL_LIGHTING); // Enable lighting
-        gl.glEnable(GL_LIGHT0); // Enable light source #0     
-        
-        // position LS 0
-        gl.glLightfv(GL_LIGHT0, GL_POSITION, lightPos, 0);
-        gl.glLightfv(GL_LIGHT0, GL_DIFFUSE, whiteColor, 0);
-        
-        
-
-        
-
-
+        // Unit box around origin
     }
     
     /**
