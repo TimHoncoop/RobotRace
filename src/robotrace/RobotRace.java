@@ -16,12 +16,20 @@ import static javax.media.opengl.GL.GL_ONE_MINUS_SRC_ALPHA;
 import static javax.media.opengl.GL.GL_SRC_ALPHA;
 import static javax.media.opengl.GL.GL_TEXTURE_2D;
 import static javax.media.opengl.GL2.*;
+import static javax.media.opengl.GL2ES1.GL_LIGHT_MODEL_AMBIENT;
 import static javax.media.opengl.GL2ES1.GL_PERSPECTIVE_CORRECTION_HINT;
 import static javax.media.opengl.GL2GL3.GL_FILL;
+import static javax.media.opengl.GLProfile.GL2;
 import static javax.media.opengl.fixedfunc.GLLightingFunc.GL_AMBIENT;
+import static javax.media.opengl.fixedfunc.GLLightingFunc.GL_AMBIENT_AND_DIFFUSE;
+import static javax.media.opengl.fixedfunc.GLLightingFunc.GL_COLOR_MATERIAL;
+import static javax.media.opengl.fixedfunc.GLLightingFunc.GL_DIFFUSE;
 import static javax.media.opengl.fixedfunc.GLLightingFunc.GL_LIGHT0;
+import static javax.media.opengl.fixedfunc.GLLightingFunc.GL_LIGHT1;
 import static javax.media.opengl.fixedfunc.GLLightingFunc.GL_LIGHTING;
 import static javax.media.opengl.fixedfunc.GLLightingFunc.GL_NORMALIZE;
+import static javax.media.opengl.fixedfunc.GLLightingFunc.GL_POSITION;
+import static javax.media.opengl.fixedfunc.GLLightingFunc.GL_SMOOTH;
 import static javax.media.opengl.fixedfunc.GLMatrixFunc.GL_MODELVIEW;
 import static javax.media.opengl.fixedfunc.GLMatrixFunc.GL_PROJECTION;
 
@@ -168,8 +176,16 @@ public class RobotRace extends Base {
         gl.glEnable(GL_DEPTH_TEST);
         gl.glDepthFunc(GL_LESS);
 		
-	    // Normalize normals.
+	// Normalize normals.
         gl.glEnable(GL_NORMALIZE);
+        
+        //Enable smooth shading
+        //EDIT
+        gl.glShadeModel(GL_SMOOTH);
+        
+        gl.glEnable(GL_COLOR_MATERIAL);
+        gl.glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+        //EDIT
         
         // Enable textures. 
         gl.glEnable(GL_TEXTURE_2D);
@@ -181,6 +197,8 @@ public class RobotRace extends Base {
         brick = loadTexture("brick.jpg");
         head = loadTexture("head.jpg");
         torso = loadTexture("torso.jpg");
+        
+        
     }
     
     /**
@@ -223,6 +241,8 @@ public class RobotRace extends Base {
 // Background color.
         gl.glClearColor(1f, 1f, 1f, 0f);
         
+
+        
         // Clear background.
         gl.glClear(GL_COLOR_BUFFER_BIT);
         
@@ -234,10 +254,17 @@ public class RobotRace extends Base {
         
         gl.glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
         
+        gl.glDisable(GL_LIGHTING); // Enable lighting
+        gl.glDisable(GL_LIGHT0); // Enable light source #0
+        gl.glDisable(GL_LIGHT1);
         // Draw the axis frame.
         if (gs.showAxes) {
             drawAxisFrame();
         }
+        gl.glEnable(GL_LIGHTING); // Enable lighting
+        gl.glEnable(GL_LIGHT0); // Enable light source #0
+        gl.glEnable(GL_LIGHT1);
+
         gl.glColor3f(0f, 0f, 0f);
         // Get the position and direction of the first robot.
         robots[0].position = raceTracks[gs.trackNr].getLanePoint(0, 0);
@@ -311,39 +338,22 @@ public class RobotRace extends Base {
         
         // Unit box around origin.
         
-        float lightPos[] = {2.0f, 0.0f, 3.0f, 0.0f};
-        float sunlightPos[] = {2.0f, 0.0f, 3.0f, 0.0f};
-
+        float lightPos[] = {-5.0f, 5.0f, 0.0f, 1.0f};
+        float whiteColor[] = {1.0f, 1.0f, 1.0f, 1.0f};
         
-        gl.glShadeModel(GL_SMOOTH); // Use smooth shading
+        //float ambientColor[] = {0.2f, 0.2f, 0.2f, 1f};
+        //gl.glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientColor,0);
+        
         gl.glEnable(GL_LIGHTING); // Enable lighting
-        gl.glEnable(GL_LIGHT0); // Enable light source #0
-        gl.glEnable(GL_LIGHT1);
+        gl.glEnable(GL_LIGHT0); // Enable light source #0     
         
-
         // position LS 0
         gl.glLightfv(GL_LIGHT0, GL_POSITION, lightPos, 0);
-        gl.glLightfv(GL_LIGHT1, GL_POSITION, sunlightPos, 0); 
+        gl.glLightfv(GL_LIGHT0, GL_DIFFUSE, whiteColor, 0);
+        
+        
 
         
-        float greyColor[]  = {0.3f, 0.3f, 0.3f, 1.0f};
-        float pinkColor[]  = {1.0f, 0.7f, 0.7f, 1.0f};
-        float whiteColor[] = {1.0f, 1.0f, 1.0f, 1.0f};
-
-        gl.glLightfv(GL_LIGHT0, GL_AMBIENT,  greyColor, 0); 
-        gl.glLightfv(GL_LIGHT0, GL_DIFFUSE,  pinkColor, 0);
-        gl.glLightfv(GL_LIGHT0, GL_SPECULAR, whiteColor, 0);
-        
-        gl.glMaterialfv(GL_FRONT, GL_DIFFUSE, pinkColor, 0); 
-        
-        float emissionColor[]  = {0.2f, 0.3f, 0.1f, 1.0f};
-        float diffuseColor[]   = {0.6f, 0.3f, 0.1f, 1.0f};
-        float specularColor[]  = {0.1f, 0.1f, 0.1f, 1.0f};
-
-        gl.glMaterialfv(GL_FRONT, GL_EMISSION, emissionColor, 0);
-        gl.glMaterialfv(GL_FRONT, GL_DIFFUSE,  diffuseColor, 0);
-        gl.glMaterialfv(GL_FRONT, GL_SPECULAR, specularColor, 0);
-        gl.glMaterialf(GL_FRONT, GL_SHININESS, 25.0f);
 
 
     }

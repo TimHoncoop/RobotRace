@@ -32,6 +32,7 @@ class Robot {
      * Draws this robot (as a {@code stickfigure} if specified).
      */
     public void draw(GL2 gl, GLU glu, GLUT glut, boolean stickFigure, float tAnim) {
+
         if (stickFigure) {
             //MIDDLE
             //Caudale
@@ -163,6 +164,8 @@ class Robot {
             gl.glPopMatrix();
         }
         else {
+            
+            gl.glColor3f(material.diffuse[0], material.diffuse[1],material.diffuse[2]);
             //torso
             gl.glPushMatrix();
             gl.glTranslatef(0, 0, 1.125f);
