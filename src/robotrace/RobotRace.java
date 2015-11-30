@@ -231,9 +231,12 @@ public class RobotRace extends Base {
         gl.glEnable(GL_LIGHTING); // Enable lighting
         gl.glEnable(GL_LIGHT0); // Enable light source #0  
         
-        float x = (float)(gs.vDist*cos(gs.phi+0.1745329252 )*cos(gs.theta-0.1745329252 ));
-        float y = (float)(gs.vDist*cos(gs.phi+0.1745329252 )*sin(gs.theta-0.1745329252 ));
-        float z = (float)(gs.vDist*sin(gs.phi+0.1745329252 ));
+        float lightAnglePhi = (float) (gs.phi + 0.174532925) ;
+        float lightAngleTheta = (float) (gs.theta - 0.174532925 );
+        
+        float x = (float)(gs.vDist*cos(lightAnglePhi)*cos(lightAngleTheta));
+        float y = (float)(gs.vDist*cos(lightAnglePhi)*sin(lightAngleTheta));
+        float z = (float)(gs.vDist*sin(lightAnglePhi));
         float lightPos[] = {x, y, z, 0.0f};
         float whiteColor[] = {1.0f, 1.0f, 1.0f, 1.0f};
         float specular[] = {0.5f, 0.5f, 0.5f, 0.5f};
