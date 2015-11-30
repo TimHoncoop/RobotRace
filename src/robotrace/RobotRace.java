@@ -216,9 +216,6 @@ public class RobotRace extends Base {
         // Set the perspective.
         // Modify this to meet the requirements in the assignment.
         glu.gluPerspective(Math.toDegrees((2*atan((0.5*gs.vWidth)/gs.vDist))), (float)gs.w / (float)gs.h, 0.1*gs.vDist, 10*gs.vDist);
-        System.out.println((2*atan((0.5*gs.vWidth)/gs.vDist)));
-        System.out.println("dist:" + gs.vDist);
-        System.out.println("width:" + gs.vWidth);
         // Set camera.
         gl.glMatrixMode(GL_MODELVIEW);
         gl.glLoadIdentity();
@@ -242,6 +239,13 @@ public class RobotRace extends Base {
         float specular[] = {0.5f, 0.5f, 0.5f, 0.5f};
         float globalAmbient[] = {0.1f, 0.1f, 0.1f, 1.0f};
         
+        gl.glLineWidth(8f); 
+        gl.glColor3f(0f, 0f, 0f);
+        gl.glBegin(GL_LINES);
+        gl.glVertex3f(0.0f, 0.0f, 0.0f);
+        gl.glVertex3f(x, y, z);
+        gl.glEnd();
+        System.out.println(x + " " + y + " " + z);        
         // position LS 0
         gl.glLightfv(GL_LIGHT0, GL_POSITION, lightPos, 0);
         gl.glLightfv(GL_LIGHT0, GL_DIFFUSE, whiteColor, 0);

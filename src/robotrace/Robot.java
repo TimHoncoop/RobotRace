@@ -223,7 +223,7 @@ class Robot {
 
             
             //draw left leg based on rotation
-            drawLeftLeg(gl, glu, glut, 60);
+            drawLeftLeg(gl, glu, glut, 0);
 
             
             //neck
@@ -266,43 +266,31 @@ class Robot {
     public void drawLeftLeg(GL2 gl, GLU glu, GLUT glut, float rotation) {  
         
         gl.glPushMatrix();
+        //This is the position of the hip
         gl.glTranslatef(-0.25f, 0, 0.75f);
+        //Rotate the upper leg (including the lower leg) with respect to the hip
         gl.glRotatef(rotation, 1.0f, 0f, 0f);
-        
-        gl.glTranslatef(0, 0, -0.1875f);
-        
+        //Give the upper leg the right dimensions
+        gl.glTranslatef(0, 0, -0.1875f);        
         gl.glPushMatrix();
+        //Push the scaling so that it can be popped after drawing 
+        //and scale and draw the lower leg
         gl.glScalef(0.25f, 0.25f, 0.475f);
         glut.glutSolidCube(1f);
         gl.glPopMatrix();
-        
-        
+        //Translate to the end of the upperleg to get ready for the lowerleg
         gl.glTranslatef(0, 0, -0.1875f);
         
         
-        gl.glScalef(0.25f, 0.25f, 0.375f);
-        gl.glRotatef(30,1f,0f,0f);
+        //This is for rotating the lower leg with respect to the upper leg
+        //gl.glRotatef(30,1f,0f,0f);
+        
+        //translate to the center of where the lowerleg is supposed to be
         gl.glTranslatef(0f, 0f, -0.1875f);
+        //Scale and draw the lower leg
+        gl.glScalef(0.25f, 0.25f, 0.375f);
         glut.glutSolidCube(1f);  
-        gl.glPopMatrix();
-
-        //left upperleg
-        //gl.glPushMatrix();
-        //gl.glTranslatef(-0.25f, 0, 0.6125f);
-        
-        //gl.glRotatef(rotation, 1.0f, 0f, 0f);
-        //gl.glTranslatef(0f, 0f,-0.1875f);
-                
-        //gl.glScalef(0.25f, 0.25f, 0.475f);
-        //glut.glutSolidCube(1f);
-       //gl.glPopMatrix();
-        
-        //left lowerleg
-        //gl.glPushMatrix();
-        //gl.glTranslatef(-0.25f, 0, 0.1875f);
-              
-        //gl.glPopMatrix();
-        
+        gl.glPopMatrix();    
         
 
     }
