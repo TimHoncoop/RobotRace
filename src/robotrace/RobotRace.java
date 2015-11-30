@@ -239,13 +239,14 @@ public class RobotRace extends Base {
         float z = (float)(gs.vDist*sin(gs.phi+0.1745329252 ));
         float lightPos[] = {x, y, z, 0.0f};
         float whiteColor[] = {1.0f, 1.0f, 1.0f, 1.0f};
-        float globalAmbient[] = {0.5f, 0.5f, 0.5f, 1.0f};
+        float specular[] = {0.5f, 0.5f, 0.5f, 0.5f};
+        float globalAmbient[] = {0.1f, 0.1f, 0.1f, 1.0f};
         
         // position LS 0
         gl.glLightfv(GL_LIGHT0, GL_POSITION, lightPos, 0);
         gl.glLightfv(GL_LIGHT0, GL_DIFFUSE, whiteColor, 0);
         gl.glLightfv(GL_LIGHT0, GL_AMBIENT, globalAmbient, 0);
-        gl.glLightfv(GL_LIGHT0, GL_SPECULAR, whiteColor, 0);
+        gl.glLightfv(GL_LIGHT0, GL_SPECULAR, specular, 0);
     }
     
     /**
